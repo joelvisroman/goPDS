@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{28C60BB6-351C-4B30-B705-634A49DACF24}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="PrTIdHttp.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PrTIdHttp">
+        <MSBuild Projects="PrTIdHttp.dproj"/>
+    </Target>
+    <Target Name="PrTIdHttp:Clean">
+        <MSBuild Projects="PrTIdHttp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PrTIdHttp:Make">
+        <MSBuild Projects="PrTIdHttp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PrTIdHttp"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PrTIdHttp:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PrTIdHttp:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

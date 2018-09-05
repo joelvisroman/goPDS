@@ -1,0 +1,94 @@
+unit unTIdHttp;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, IdBaseComponent,
+  IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, IdIOHandler, IdMultipartFormData, XmlDoc,
+  IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL, Soap.SOAPHTTPTrans,IdURI,
+  Soap.InvokeRegistry, Soap.Rio, Soap.SOAPHTTPClient, SBXMLSec, SBXMLSig, HTTPApp, XMLIntf, ActiveX;
+type
+  TForm1 = class(TForm)
+    MemoResp: TMemo;
+    Button7: TButton;
+    procedure Button7Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button7Click(Sender: TObject);
+var
+  Req: TStream;
+  SL: TStringList;
+  sSend: String;
+  SSL1 : TIdSSLIOHandlerSocketOpenSSL;
+  Doc: IXMLDocument;
+  IdHTTP1 : TIdHTTP;
+begin
+  MemoResp.Lines.Clear;
+  try
+    Doc := TXMLDocument.Create(nil);
+    Doc.LoadFromFile('..\..\NHS.xml');
+    Req := TStringStream.Create(Doc.XML.Text, TEncoding.UTF8);
+    try
+      SSL1 := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
+      IdHTTP1 := TIdHTTP.Create(nil);
+      try
+        SSL1.SSLOptions.RootCertFile := '..\..\root.pem';
+        SSL1.SSLOptions.CertFile := '..\..\cert.pem';
+        SSL1.SSLOptions.KeyFile := '..\..\key.pem';
+        SSL1.SSLOptions.Method := sslvSSLv23;
+        SSL1.SSLOptions.Mode := sslmClient;
+        SSL1.SSLOptions.VerifyDepth := 20;
+        SSL1.SSLOptions.VerifyMode := [];
+
+        IdHTTP1.Request.Clear;
+        IdHTTP1.IOHandler := SSL1;
+        IdHTTP1.HandleRedirects  := True;
+        IdHTTP1.ProtocolVersion := pv1_1;
+        IdHTTP1.Request.ContentType := 'text/xml; charset=utf-8';
+        IdHTTP1.Request.ContentLength := 3237;
+        IdHTTP1.Request.Charset := 'UTF-8';
+        IdHTTP1.Request.AcceptEncoding:='gzip,deflate';
+        IdHTTP1.Request.Connection:='Keep-Alive';
+        IdHTTP1.Request.UserAgent:='Apache-HttpClient/4.1.1 (java 1.5)';
+        IdHTTP1.Request.CustomHeaders.AddValue('SOAPAction','"urn:nhs-itk:services:201005:getNHSNumber-v1-0"');
+        IdHTTP1.Request.CustomHeaders.AddValue('style:','"document"');
+        IdHTTP1.Request.Host := '192.168.128.11';
+
+        sSend := IdHTTP1.Post('https://192.168.128.11:443/smsp/pds', Req);
+
+        MemoResp.Lines.Add(IdHTTP1.ResponseText);
+        MemoResp.Lines.Add(sSend);
+      finally
+        SSl1.Free;
+        IdHTTP1.Free;
+      end;
+    finally
+      FreeAndNil(Req);
+      FreeAndNil(Doc);
+    end;
+  except
+   On E : EIdHTTPProtocolException do
+   begin
+      MemoResp.Lines.Clear;
+      MemoResp.Lines.Add(E.ErrorMessage);
+   end;
+   On E : Exception do
+   begin
+     MemoResp.Lines.Clear;
+     MemoResp.Lines.Add(E.Message);
+   end;
+  end;
+end;
+end.

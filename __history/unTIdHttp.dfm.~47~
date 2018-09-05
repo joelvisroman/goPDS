@@ -1,0 +1,238 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 568
+  ClientWidth = 1160
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Button1: TButton
+    Left = 8
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 0
+    Visible = False
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 8
+    Top = 39
+    Width = 75
+    Height = 25
+    Caption = 'Button2'
+    TabOrder = 1
+    Visible = False
+    OnClick = Button2Click
+  end
+  object Memo1: TMemo
+    Left = 144
+    Top = 8
+    Width = 492
+    Height = 552
+    Lines.Strings = (
+      '<?xml version="1.0" encoding="UTF-8"?>'
+      
+        '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envel' +
+        'ope/" xmlns:itk="urn:nhs-'
+      'itk:ns:201005" '
+      
+        'xmlns:wsa="http://www.w3.org/2005/08/addressing"><soap:Header><w' +
+        'sa:MessageID>B72F778'
+      
+        '5-534C-11E6-ADCA-29C651A3BE6F</wsa:MessageID><wsa:Action>urn:nhs' +
+        '-'
+      'itk:services:201005:getNHSNumber-v1-'
+      
+        '0</wsa:Action><wsa:To>https://192.168.128.11/smsp/pds</wsa:To><w' +
+        'sa:From><wsa:Addres'
+      
+        's>192.168.54.7</wsa:Address></wsa:From><wsse:Security xmlns:wsse' +
+        '="http://docs.oasis-'
+      
+        'open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"' +
+        '><wsu:Timestamp '
+      
+        'xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-w' +
+        'ss-wssecurity-utility-1.0.xsd" '
+      
+        'wsu:Id="D6CD5232-14CF-11DF-9423-1F9A910D4703"><wsu:Created>2016-' +
+        '07-'
+      '27T11:10:23Z</wsu:Created><wsu:Expires>2020-07-'
+      
+        '27T11:20:23Z</wsu:Expires></wsu:Timestamp><wsse:UsernameToken><w' +
+        'sse:Username>TKS '
+      'Server '
+      
+        'test</wsse:Username></wsse:UsernameToken></wsse:Security></soap:' +
+        'Header><soap:Body>'
+      
+        '<itk:DistributionEnvelope xmlns:xsi="http://www.w3.org/2001/XMLS' +
+        'chema-instance"><itk:header '
+      
+        'service="urn:nhs-itk:services:201005:getNHSNumber-v1-0" tracking' +
+        'id="B72F9E96-534C-11E6-'
+      
+        'ADCA-29C651A3BE6F"><itk:auditIdentity><itk:id type="1.2.826.0.12' +
+        '85.0.2.0.107" '
+      
+        'uri="868000003114" /></itk:auditIdentity><itk:manifest count="1"' +
+        '><itk:manifestitem '
+      
+        'id="uuid_808A9678-49B2-498B-AD75-1D7A0F1262D7" mimetype="text/xm' +
+        'l" profileid="urn:nhs-'
+      
+        'en:profile:getNHSNumberRequest-v1-0" base64="false" compressed="' +
+        'false" encrypted="false" '
+      
+        '/></itk:manifest><itk:senderAddress uri="urn:nhs-uk:addressing:o' +
+        'ds:rhm:team1:C" '
+      
+        '/></itk:header><itk:payloads count="1"><itk:payload id="uuid_808' +
+        'A9678-49B2-498B-AD75-'
+      
+        '1D7A0F1262D7"><getNHSNumberRequest-v1-0 xmlns="urn:hl7-org:v3" m' +
+        'oodCode="EVN" '
+      
+        'classCode="CACT"><id root="3E25ACE2-23F8-4A37-B446-6A37F31BF77C"' +
+        ' /><code '
+      
+        'codeSystem="2.16.840.1.113883.2.1.3.2.4.17.284" code="getNHSNumb' +
+        'erRequest-v1-0" '
+      '/><queryEvent><Person.DateOfBirth><value value="19770705" '
+      
+        '/><semanticsText>Person.DateOfBirth</semanticsText></Person.Date' +
+        'OfBirth><Person.Gender'
+      '><value code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.25" '
+      
+        '/><semanticsText>Person.Gender</semanticsText></Person.Gender><P' +
+        'erson.Name><value><'
+      
+        'given>LILITH</given><family>LAWALI</family></value><semanticsTex' +
+        't>Person.Name</seman'
+      'ticsText></Person.Name><Person.Postcode><value><postalCode>SK8 '
+      
+        '5HS</postalCode></value><semanticsText>Person.Postcode</semantic' +
+        'sText></Person.Postco'
+      'de></queryEvent></getNHSNumberRequest-v1-'
+      
+        '0></itk:payload></itk:payloads></itk:DistributionEnvelope></soap' +
+        ':Body></soap:Envelope>')
+    TabOrder = 2
+  end
+  object MemoResp: TMemo
+    Left = 642
+    Top = 8
+    Width = 510
+    Height = 552
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Courier New'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Button3: TButton
+    Left = 8
+    Top = 70
+    Width = 75
+    Height = 25
+    Caption = 'Button3'
+    TabOrder = 4
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 8
+    Top = 101
+    Width = 75
+    Height = 25
+    Caption = 'Button4'
+    TabOrder = 5
+    OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 8
+    Top = 132
+    Width = 75
+    Height = 25
+    Caption = 'Button5'
+    TabOrder = 6
+    OnClick = Button5Click
+  end
+  object Button6: TButton
+    Left = 8
+    Top = 163
+    Width = 75
+    Height = 25
+    Caption = 'Button6'
+    TabOrder = 7
+    OnClick = Button6Click
+  end
+  object Button7: TButton
+    Left = 8
+    Top = 194
+    Width = 75
+    Height = 25
+    Caption = 'Button7'
+    TabOrder = 8
+    OnClick = Button7Click
+  end
+  object IdSSLIOHandlerSocketOpenSSL1: TIdSSLIOHandlerSocketOpenSSL
+    MaxLineAction = maException
+    Port = 0
+    DefaultPort = 0
+    SSLOptions.RootCertFile = 'C:\Evolutio\NHS\GOPDS\root.pem'
+    SSLOptions.CertFile = 'C:\Evolutio\NHS\GOPDS\cert.pem'
+    SSLOptions.KeyFile = 'C:\Evolutio\NHS\GOPDS\key.pem'
+    SSLOptions.Mode = sslmUnassigned
+    SSLOptions.VerifyMode = []
+    SSLOptions.VerifyDepth = 0
+    Left = 680
+    Top = 88
+  end
+  object IdHTTP1: TIdHTTP
+    AllowCookies = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = True
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 688
+    Top = 144
+  end
+  object HTTPRIO1: THTTPRIO
+    HTTPWebNode.UseUTF8InHeader = True
+    HTTPWebNode.InvokeOptions = [soIgnoreInvalidCerts, soAutoCheckAccessPointViaUDDI]
+    HTTPWebNode.WebNodeOptions = []
+    Converter.Options = [soSendMultiRefObj, soTryAllSchema, soRootRefNodesToBody, soCacheMimeResponse, soUTF8EncodeXML]
+    Left = 688
+    Top = 32
+  end
+  object ElXMLSigner1: TElXMLSigner
+    CanonicalizationMethod = xcmCanon
+    SignatureType = xstEnveloped
+    SignatureCompliance = xscDSIG
+    SignatureMethodType = xmtSig
+    MACMethod = xmmHMAC_SHA1
+    SignatureMethod = xsmRSA_SHA1
+    IncludeKey = True
+    Left = 680
+    Top = 224
+  end
+end
