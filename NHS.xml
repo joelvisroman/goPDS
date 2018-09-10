@@ -35,24 +35,24 @@
 						<code codeSystem="2.16.840.1.113883.2.1.3.2.4.17.284" code="getNHSNumberRequest-v1-0"/>
 						<queryEvent>
 							<Person.DateOfBirth>
-								<value value="19770705"/>
+								<value value="EVO_DOB"/>
 								<semanticsText>Person.DateOfBirth</semanticsText>
 							</Person.DateOfBirth>
 							<Person.Gender>
-								<value code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.25"/>
+								<value code="EVO_GENDER" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.25"/>
 								<semanticsText>Person.Gender</semanticsText>
 							</Person.Gender>
 							
 							<Person.Name>
 								<value>
-									<given>LILITH</given>
-									<family>LAWALI</family>
+									<given>EVO_GIVEN</given>
+									<family>EVO_FAMILY</family>
 								</value>
 								<semanticsText>Person.Name</semanticsText>
 							</Person.Name>
 							<Person.Postcode>
 								<value>
-									<postalCode>SK8 5HS</postalCode>
+									<postalCode>EVO_POSTAL</postalCode>
 								</value>
 								<semanticsText>Person.Postcode</semanticsText>
 							</Person.Postcode>

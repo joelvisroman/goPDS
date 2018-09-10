@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, IdBaseComponent,
   IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, IdIOHandler, IdMultipartFormData, XmlDoc,
   IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL, Soap.SOAPHTTPTrans,IdURI,
-  Soap.InvokeRegistry, Soap.Rio, Soap.SOAPHTTPClient, SBXMLSec, SBXMLSig, HTTPApp, XMLIntf, ActiveX;
+  Soap.InvokeRegistry, Soap.Rio, Soap.SOAPHTTPClient, HTTPApp, XMLIntf, ActiveX;
 type
   TForm1 = class(TForm)
     MemoResp: TMemo;
@@ -38,6 +38,14 @@ begin
   try
     docLoad := TXMLDocument.Create(nil);
     docLoad.LoadFromFile('..\..\NHS.xml');
+
+    {adds XML parameters}
+    docLoad.XML.Text := StringReplace(docLoad.XML.Text, 'EVO_DOB', '19770705', [rfReplaceAll]);
+    docLoad.XML.Text := StringReplace(docLoad.XML.Text, 'EVO_GENDER', '2', [rfReplaceAll]);
+    docLoad.XML.Text := StringReplace(docLoad.XML.Text, 'EVO_GIVEN', 'LILITH', [rfReplaceAll]);
+    docLoad.XML.Text := StringReplace(docLoad.XML.Text, 'EVO_FAMILY', 'LAWALI', [rfReplaceAll]);
+    docLoad.XML.Text := StringReplace(docLoad.XML.Text, 'EVO_POSTAL', 'SK8 5HS', [rfReplaceAll]);
+
     reqXML := TStringStream.Create(docLoad.XML.Text, TEncoding.UTF8);
     try
       idCertSSL := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
@@ -61,7 +69,7 @@ begin
       end;
     finally
       FreeAndNil(reqXML);
-      FreeAndNil(docLoad);
+      docLoad := Nil;
     end;
   except
    On E : EIdHTTPProtocolException do
