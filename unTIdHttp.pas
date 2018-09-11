@@ -63,6 +63,7 @@ begin
 
         MemoResp.Lines.Add(IdHTTP1.ResponseText);
         MemoResp.Lines.Add(sSend);
+        MemoResp.Lines.Add('NHS Number: ' + Copy(sSend, Pos(' extension=', sSend) + 12, 10));
       finally
         idCertSSL.Free;
         IdHTTP1.Free;
